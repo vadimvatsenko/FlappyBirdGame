@@ -56,4 +56,22 @@ public class Player : MonoBehaviour
 
     }
 
+    /*
+    1.OnTriggerEnter2D - используется для обнаружения столкновения объектов в двухмерном(2D) пространстве
+    2. (Collider2D other) - это список параметров метода.В данном случае, метод принимает один параметр - Collider2D, 
+      который называется other.Этот параметр представляет собой коллайдер другого объекта, с которым произошло столкновение
+    3. other - означает другие теги, те которые мы создали вручную
+     
+     */
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Obstacle") // если другой тег == Obstacle
+        {
+            FindObjectOfType<GameManager>().GameOver(); // то вызови функкцию GameOver
+        } else if(other.gameObject.tag == "Scoring") // если другой тег == Scoring
+        {
+            FindObjectOfType<GameManager>().IncScore(); // то вызови функцию IncScore - подсчет очков
+        }
+    }
+
 }

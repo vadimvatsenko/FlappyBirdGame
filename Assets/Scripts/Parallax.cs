@@ -10,7 +10,7 @@ public class Parallax : MonoBehaviour
 
     private void Awake()
     {
-        animationSpeed = 0.1f;
+       
         meshRenderer = GetComponent<MeshRenderer>(); // «начение, полученное с помощью GetComponent,
                                                      // присваиваетс€ переменной meshRenderer, котора€ была объ€влена ранее.
                                                      // Ёто позвол€ет вашему скрипту сохранить ссылку на компонент MeshRenderer,
