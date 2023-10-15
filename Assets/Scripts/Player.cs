@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UIElements;
+
 public class Player : MonoBehaviour
 {
     private SpriteRenderer spriteRender;
@@ -20,6 +22,22 @@ public class Player : MonoBehaviour
     {
         //Application.targetFrameRate = 60;
         InvokeRepeating(nameof(AnimateSprite), 0.15f, 0.15f); // повторный вызов метода для переключения спрайтов через 15мс и каждые 15мс
+    }
+
+    /*1. private void OnEnable(): Это Unity-событийный метод, который вызывается, когда объект становится активным
+    2. Vector3 position = transform.position - В этой строке кода переменной position присваивается текущее положение объекта, 
+    на котором находится данный скрипт.transform - это ссылка на компонент Transform этого объекта, 
+    который содержит информацию о его положении, вращении и масштабе.
+    3. position.y = 0;: Здесь мы устанавливаем координату y позиции равной нулю
+    4. transform.position = position;: Здесь мы устанавливаем новое положение объекта, 
+    учитывая измененное значение position.Теперь объект находится на высоте y = 0.
+    5. direction = Vector3.zero;: Эта строка кода устанавливает переменную direction равной нулевому вектору Vector3.zero.*/
+    private void OnEnable() 
+    {
+        Vector3 position = transform.position; 
+        position.y = 0;
+        transform.position = position;
+        direction = Vector3.zero;
     }
     private void Update()
     {
@@ -67,10 +85,13 @@ public class Player : MonoBehaviour
     {
         if(other.gameObject.tag == "Obstacle") // если другой тег == Obstacle
         {
+          
             FindObjectOfType<GameManager>().GameOver(); // то вызови функкцию GameOver
+
         } else if(other.gameObject.tag == "Scoring") // если другой тег == Scoring
         {
             FindObjectOfType<GameManager>().IncScore(); // то вызови функцию IncScore - подсчет очков
+          
         }
     }
 
